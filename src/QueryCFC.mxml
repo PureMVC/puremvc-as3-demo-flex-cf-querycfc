@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ PureMVC Flex/CF Demo – Query a CFC 
+ Copyright (c) 2007 Simon Bailey <simon.bailey@puremvc.org>
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
+-->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				xmlns:view="org.puremvc.as3.demos.flex.cf.querycfc.view.components.*"
+				backgroundGradientColors="[0x3D9FFF, 0xFFFFFF]"
+				creationComplete="facade.startup(this)">
+				
+	<mx:Script>
+		<![CDATA[
+			
+			import org.puremvc.as3.demos.flex.cf.querycfc.ApplicationFacade;
+			
+			/**
+			 * Get reference to the main ApplicationFacade singleton instance
+			 */
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			
+		]]>
+	</mx:Script>
+	
+	<mx:HBox>
+	<!-- User List -->
+	<view:UserList id="userList"/>
+	
+	<!-- User Form -->
+	<view:UserForm id="userForm"/>
+	</mx:HBox>
+	
+</mx:Application>
