@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ PureMVC Flex/CF Demo – Query a CFC 
+ Copyright (c) 2007 Simon Bailey <simon.bailey@puremvc.org>
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
+-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   height="100%" width="100%" horizontalScrollPolicy="off"
+		   backgroundColor="#FFFFFF" cornerRadius="8"
+		   borderStyle="solid" borderThickness="0"
+		   dropShadowEnabled="true">
+	<mx:Metadata>
+		[Event('select')]
+		[Event('delete')]
+		[Event('new')]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.collections.ArrayCollection;
+			import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.UserVO;
+			
+			public static const SELECT:String = 'select';
+			public static const DELETE:String = 'delete';
+			public static const NEW:String = 'new';
+			
+			[Bindable] public var selectedUser:UserVO;
+			[Bindable] public var users:ArrayCollection;
+			[Bindable] private var armed:Boolean;
+			
+			private function sendEvent( eventName:String ):void
+			{
+				armed = false;
+				successMessage.text = "";
+				dispatchEvent( new Event( eventName, true ) );
+			}
+			
+			public function deSelect():void
+			{
+				armed = false;
+				userCombo.selectedIndex = -1;
+			}
+			
+			public function showSuccess( msg:String ):void
+			{
+				successMessage.text = msg+" Successfull";
+			}
+
+		]]>
+	</mx:Script>
+	
+	<!-- The selectedUser property is bound to Selection in the Combo Box  -->
+	<mx:Binding source="userCombo.selectedItem as UserVO" destination="selectedUser"/>
+	
+	<!-- Partner select combo box -->
+	<mx:HBox x="10" y="56">
+		<mx:Label text="Select User:" />
+		<mx:ComboBox id="userCombo" 
+					 rowCount="3"
+					 prompt="Select User"
+			         dataProvider="{ users }"
+			         labelField="username"
+			         width="100%"
+					 change="if( userCombo.selectedIndex != -1 ) sendEvent( SELECT )"/>
+	</mx:HBox>
+		<!-- Action Buttons -->
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button label="New" click="deSelect();sendEvent( NEW )" />
+			<mx:Button label="Delete" click="armed=true" enabled="{ userCombo.selectedIndex != -1 }" />
+			<!-- Delete Confirmation -->
+			<mx:HBox id="deleteArmed" visible="{armed}" verticalAlign="middle">
+				<mx:Label text="Are you sure?"/>
+				<mx:LinkBar itemClick="(event.item == 'Yes'?sendEvent( DELETE ):armed=false)">
+					<mx:dataProvider>
+						<mx:String>Yes</mx:String>
+						<mx:String>No</mx:String>
+					</mx:dataProvider>
+				</mx:LinkBar>
+			</mx:HBox>
+			
+		</mx:ControlBar>
+		<mx:Label id="successMessage" text="" x="10" y="86"/>
+</mx:Canvas>
