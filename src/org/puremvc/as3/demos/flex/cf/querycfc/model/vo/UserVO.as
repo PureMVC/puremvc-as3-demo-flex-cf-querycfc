@@ -6,7 +6,7 @@
 package org.puremvc.as3.demos.flex.cf.querycfc.model.vo
 {
 	// *** IMPORTANT CASE SENSITIVE ***
-	[RemoteClass(alias="Demo_AS3_Flex_CF_QueryCFC.assets.cfc.UserVO")]
+	[RemoteClass(alias="QueryCFC.Services.cfc.UserVO")]
 
 	[Bindable]	
 	public class UserVO
