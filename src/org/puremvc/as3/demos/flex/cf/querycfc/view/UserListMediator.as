@@ -7,15 +7,14 @@ package org.puremvc.as3.demos.flex.cf.querycfc.view
 {
 	import flash.events.Event;
 	
-	import org.puremvc.patterns.mediator.Mediator;
-	import org.puremvc.interfaces.INotification;
-	import org.puremvc.interfaces.IMediator;
-	import org.puremvc.patterns.observer.Notification;
+	import org.puremvc.as3.interfaces.*;
+	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.puremvc.as3.patterns.observer.Notification;
 	
-	import org.puremvc.as3.demos.flex.cf.querycfc.ApplicationFacade;
-	import org.puremvc.as3.demos.flex.cf.querycfc.model.RemoteProxy;
-	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.UserVO;
-	import org.puremvc.as3.demos.flex.cf.querycfc.view.components.UserList;
+	import org.puremvc.as3.demos.flex.cf.querycfc.*;
+	import org.puremvc.as3.demos.flex.cf.querycfc.model.*;
+	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.*;
+	import org.puremvc.as3.demos.flex.cf.querycfc.view.components.*;
 
 	public class UserListMediator extends Mediator implements IMediator
 	{
@@ -25,7 +24,7 @@ package org.puremvc.as3.demos.flex.cf.querycfc.view
 		
 		public function UserListMediator( viewComponent:Object )
 		{
-			super( viewComponent );
+			super( NAME, viewComponent );
 			
 			// Add listeners to the view component i.e. userList combobox
 			userList.addEventListener( UserList.SELECT, onSelect );
@@ -35,16 +34,6 @@ package org.puremvc.as3.demos.flex.cf.querycfc.view
 			// Retrieve the instance of the applications ResProxy
 			remoteProxy = facade.retrieveProxy( RemoteProxy.NAME ) as RemoteProxy;
 			userList.users = remoteProxy.users;
-		}
-		
-		override public function getMediatorName():String
-		{
-			return NAME;
-		}
-		
-		public function get userList():UserList
-		{
-			return viewComponent as UserList;
 		}
 		
 		private function onSelect( event:Event ):void
@@ -98,5 +87,9 @@ package org.puremvc.as3.demos.flex.cf.querycfc.view
 			}
 		}
 		
+		public function get userList():UserList
+		{
+			return viewComponent as UserList;
+		}
 	}
 }

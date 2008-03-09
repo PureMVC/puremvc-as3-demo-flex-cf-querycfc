@@ -5,37 +5,27 @@
  */
 package org.puremvc.as3.demos.flex.cf.querycfc.view
 {
-	import org.puremvc.as3.demos.flex.cf.querycfc.ApplicationFacade;
-	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.UserVO;
-	import org.puremvc.as3.demos.flex.cf.querycfc.view.components.UserForm;
-	
 	import flash.events.Event;
 	
-	import org.puremvc.interfaces.IMediator;
-	import org.puremvc.interfaces.INotification;
-	import org.puremvc.patterns.mediator.Mediator;
+	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.mediator.Mediator;
 
+	import org.puremvc.as3.demos.flex.cf.querycfc.*;
+	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.*;
+	import org.puremvc.as3.demos.flex.cf.querycfc.view.components.*;
+	
 	public class UserFormMediator extends Mediator implements IMediator
 	{	
 		public static const NAME:String = 'UserFormMediator';
 		
-		public function UserFormMediator( viewComponent:Object )
+		public function UserFormMediator( viewComponent:UserForm )
 		{
-			super( viewComponent );
+			super( NAME, viewComponent );
 			
 			userForm.addEventListener( UserForm.ADD, onAdd );
 			userForm.addEventListener( UserForm.CANCEL, onCancel );
 			userForm.addEventListener( UserForm.UPDATE, onUpdate );
-		}
-		
-		override public function getMediatorName():String
-		{
-			return NAME;
-		}
-		
-		public function get userForm():UserForm
-		{
-			return viewComponent as UserForm;
 		}
 		
 		private function onAdd( event:Event ):void
@@ -96,5 +86,11 @@ package org.puremvc.as3.demos.flex.cf.querycfc.view
 			userForm.username.text = '';
 			userForm.password.text = '';
 		}
+
+		public function get userForm():UserForm
+		{
+			return viewComponent as UserForm;
+		}
+		
 	}
 }

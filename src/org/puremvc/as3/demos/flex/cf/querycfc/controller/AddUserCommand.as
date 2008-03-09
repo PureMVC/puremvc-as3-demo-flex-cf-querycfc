@@ -5,13 +5,13 @@
  */
 package org.puremvc.as3.demos.flex.cf.querycfc.controller
 {
+	import org.puremvc.as3.interfaces.ICommand;
+	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.command.SimpleCommand;
+
 	import org.puremvc.as3.demos.flex.cf.querycfc.ApplicationFacade;
 	import org.puremvc.as3.demos.flex.cf.querycfc.model.RemoteProxy;
 	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.UserVO;
-	
-	import org.puremvc.interfaces.ICommand;
-	import org.puremvc.interfaces.INotification;
-	import org.puremvc.patterns.command.SimpleCommand;
 	
 	public class AddUserCommand extends SimpleCommand implements ICommand
 	{

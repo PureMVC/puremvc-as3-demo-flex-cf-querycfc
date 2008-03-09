@@ -5,9 +5,9 @@
  */
 package org.puremvc.as3.demos.flex.cf.querycfc.controller
 {
-	import org.puremvc.interfaces.ICommand;
-	import org.puremvc.patterns.command.SimpleCommand;
-	import org.puremvc.interfaces.INotification;
+	import org.puremvc.as3.interfaces.ICommand;
+	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import org.puremvc.as3.demos.flex.cf.querycfc.model.RemoteProxy;
 	import org.puremvc.as3.demos.flex.cf.querycfc.ApplicationFacade;
@@ -25,7 +25,7 @@ package org.puremvc.as3.demos.flex.cf.querycfc.controller
 		 override public function execute( note:INotification ):void
 		 {
 		 	
-		 	var app:Demo_AS3_Flex_CF_QueryCFC = note.getBody() as Demo_AS3_Flex_CF_QueryCFC;
+		 	var app:QueryCFC = note.getBody() as QueryCFC;
 		 	
 		 	facade.registerProxy( new RemoteProxy() );
 			

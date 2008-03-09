@@ -5,16 +5,11 @@
  */
 package org.puremvc.as3.demos.flex.cf.querycfc
 {
-	import org.puremvc.interfaces.IFacade;
-	import org.puremvc.patterns.facade.Facade;
-	import org.puremvc.patterns.observer.Notification;
+	import org.puremvc.as3.interfaces.IFacade;
+	import org.puremvc.as3.patterns.facade.Facade;
+	import org.puremvc.as3.patterns.observer.Notification;
 	
-	import org.puremvc.as3.demos.flex.cf.querycfc.controller.StartupCommand;
-	import org.puremvc.as3.demos.flex.cf.querycfc.controller.AddUserCommand;
-	import org.puremvc.as3.demos.flex.cf.querycfc.controller.UpdateUserCommand;
-	import org.puremvc.as3.demos.flex.cf.querycfc.controller.DeleteUserCommand;
-	
-	import org.puremvc.as3.demos.flex.cf.querycfc.model.RemoteProxy;
+	import org.puremvc.as3.demos.flex.cf.querycfc.controller.*;
 
 	public class ApplicationFacade extends Facade implements IFacade
 	{
@@ -47,11 +42,6 @@ package org.puremvc.as3.demos.flex.cf.querycfc
 			return instance as ApplicationFacade;
 		}
 		
-		public function startup( app:Demo_AS3_Flex_CF_QueryCFC ):void
-		{
-			notifyObservers( new Notification( STARTUP, app ) );
-		}
-		
 		override protected function initializeController():void
 		{
 			super.initializeController();
@@ -62,5 +52,11 @@ package org.puremvc.as3.demos.flex.cf.querycfc
 			registerCommand( UPDATE_USER, UpdateUserCommand );
 			registerCommand( DELETE_USER, DeleteUserCommand );
 		}
+
+		public function startup( app:QueryCFC ):void
+		{
+			sendNotification( STARTUP, app );
+		}
+		
 	}
 }

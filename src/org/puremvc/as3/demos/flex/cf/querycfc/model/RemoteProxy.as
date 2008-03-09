@@ -5,14 +5,14 @@
  */
 package org.puremvc.as3.demos.flex.cf.querycfc.model
 {
+	import mx.rpc.IResponder;
+	import mx.collections.ArrayCollection;
+	
+	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.proxy.Proxy;
+
 	import org.puremvc.as3.demos.flex.cf.querycfc.model.vo.UserVO;
 	
-	import mx.collections.ArrayCollection;
-	import mx.rpc.IResponder;
-	
-	import org.puremvc.interfaces.IProxy;
-	import org.puremvc.patterns.proxy.Proxy;
-
 	public class RemoteProxy extends Proxy implements IProxy, IResponder
 	{
 		private var remoteDelegate:RemoteDelegate;
@@ -27,7 +27,7 @@ package org.puremvc.as3.demos.flex.cf.querycfc.model
 			 * Flex Build Path Output folder on server.  If renaming directories
 			 * ensure the below URL is amended accordingly!
 			 */
-			remoteDelegate = new RemoteDelegate( this, 'Demo_AS3_Flex_CF_QueryCFC.assets.cfc.UserManager' );
+			remoteDelegate = new RemoteDelegate( this, 'QueryCFC.Services.cfc.UserManager' );
 			
 			refreshData();
 		}
