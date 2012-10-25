@@ -1,0 +1,14 @@
+PureMVC Flex/CF Demo - Query a CFC --------------------------------------------------------------------------
+Release Date: 3/8/08
+    Platform: ActionScript 3  
+     Version: 1 
+    Revision: 1
+      Author: Simon Bailey <simon.bailey@puremvc.org>
+--------------------------------------------------------------------------
+1.1 - Updated to PureMVC 2.0.1. Refactored client code into src folder, 
+ 	  renamed app to QueryCFC - CLH
+
+1.0 - Works with PureMVC 1.7.1 
+
+0.9 - Checked in initial folder structure and license - CLH
+
